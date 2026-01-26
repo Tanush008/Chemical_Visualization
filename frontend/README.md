@@ -75,4 +75,37 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 <!-- 1.we will check if the same dataset exist in the history or not if yes then we will not upload  -->done
 <!-- 2. now we create two button to view the dataset from the history or delete the dataset -->done
 <!-- 3.when click on the view the color of box should chnge -->done
-<!-- 4. make a full dashboard with the navbar home ,history,add the authentication with user signIn/signUp logout or signIn with clerk api  -->
+<!-- 4. make a full dashboard with the navbar home ,history,add the authentication with user signIn/signUp logout or signIn with clerk api  -->done
+<!-- Alerts
+                {summary?.alerts?.length > 0 && (
+                    <div className="bg-red-100 text-red-800 p-4 rounded mt-4">
+                        {summary.alerts.map((alert, i) => (
+                            <p key={i}>⚠️ {alert}</p>
+                        ))}
+                    </div>
+                )}
+                {/* Summary Cards & Chart */}
+                {summary && (
+                    <div className="mt-10 space-y-10">
+                        <SummaryCards summary={summary} className={dark ? "dark" : ""} />
+
+                        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+                            <div className="flex justify-between items-center mb-4">
+                                <h2 className="text-xl font-semibold">Equipment Distribution</h2>
+                                <a
+                                    href={`${API_BASE}/api/report/pdf/`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-4 py-2 bg-green-600 text-white rounded-lg"
+                                >
+                                    Download PDF
+                                </a>
+                            </div>
+
+                            <EquipmentChart
+                                distribution={summary.equipment_type_distribution}
+                            />
+                        </div>
+                    </div>
+                )} -->
+<!-- 5. see why the history is not updated when uploading the dataset and make a comparison feature -->

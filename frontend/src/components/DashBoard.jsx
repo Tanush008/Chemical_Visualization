@@ -8,35 +8,52 @@ import { UserButton } from "@clerk/clerk-react";
 
 function Dashboard() {
     const [summary, setSummary] = useState(null);
-    const [dark, setDark] = useState(false);
     const [history, setHistory] = useState([]);
+    const API_BASE = process.env.REACT_APP_WEB_URL ?? "http://localhost:8000";
+    const [dark, setDark] = useState(false);
     const [selectedDatasetId, setSelectedDatasetId] = useState(null);
-
     const handleViewDataset = (summary, id) => {
         setSummary(summary);
         setSelectedDatasetId(id);
+        localStorage.setItem("selectedSummary", JSON.stringify(summary));
+        localStorage.setItem("selectedDatasetId", id);
     };
+
 
     const refreshHistory = () => {
         getHistory()
             .then((res) => setHistory(res.data))
-            .catch((err) => console.error(err));
+            .catch(console.error);
     };
+
 
     useEffect(() => {
         refreshHistory();
-    }, [summary]);
+    }, []);
 
+
+
+    useEffect(() => {
+        const storedSummary = localStorage.getItem("selectedSummary");
+        const storedDatasetId = localStorage.getItem("selectedDatasetId");
+
+        if (storedSummary) {
+            setSummary(JSON.parse(storedSummary));
+        }
+
+        if (storedDatasetId) {
+            setSelectedDatasetId(Number(storedDatasetId));
+        }
+    }, []);
     return (
         <div className={dark ? "dark" : ""}>
             <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-8">
 
-                <div className="flex justify-between items-center mb-6">
+                <div className="flex justify-between items-center mb-8">
                     <h1 className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">
-                        Chemical Equipment Parameter Visualizer
+                        Dashboard
                     </h1>
-
-                    <div className="flex gap-4 items-center">
+                    <div className="flex items-center gap-4">
                         <button
                             onClick={() => setDark(!dark)}
                             className="px-4 py-2 bg-indigo-600 text-white rounded-xl"
@@ -47,37 +64,21 @@ function Dashboard() {
                     </div>
                 </div>
 
+                {/* Upload */}
+                <UploadCSV setSummary={setSummary} className={dark ? "dark" : ""} />
 
-                <UploadCSV setSummary={setSummary} />
+                
 
 
-                {summary?.alerts?.length > 0 && (
-                    <div className="bg-red-100 text-red-800 p-4 rounded mt-4">
-                        {summary.alerts.map((alert, i) => (
-                            <p key={i}>⚠️ {alert}</p>
-                        ))}
-                    </div>
-                )}
-
-                {/* Dashboard Content */}
-                {summary && (
-                    <div className="mt-8 space-y-8">
-                        <SummaryCards summary={summary} />
-
-                        <div className="bg-white p-6 rounded-xl shadow">
-                            <EquipmentChart
-                                distribution={summary.equipment_type_distribution}
-                            />
-                        </div>
-
-                        <History
-                            history={history}
-                            onView={handleViewDataset}
-                            refreshHistory={refreshHistory}
-                            selectedDatasetId={selectedDatasetId}
-                        />
-                    </div>
-                )}
+                <div className="mt-12">
+                    <History
+                        className={dark ? "dark" : ""}
+                        history={history}
+                        onView={handleViewDataset}
+                        refreshHistory={refreshHistory}
+                        selectedDatasetId={selectedDatasetId}
+                    />
+                </div>
             </div>
         </div>
     );

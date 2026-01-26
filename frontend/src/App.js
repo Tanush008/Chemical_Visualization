@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
 import Home from "./pages/Home";
 import Dashboard from "./components/DashBoard";
+import DatasetView from "./pages/DatasetView";
 
 function App() {
   return (
@@ -21,6 +22,14 @@ function App() {
                 <Dashboard />
               </SignedIn>
             </>
+          }
+        />
+        <Route
+          path="/dataset/:id"
+          element={
+            <SignedIn>
+              <DatasetView />
+            </SignedIn>
           }
         />
       </Routes>

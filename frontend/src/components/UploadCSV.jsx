@@ -4,7 +4,7 @@ function UploadCSV({ setSummary }) {
     const { isSignedIn } = useUser();
     if (!isSignedIn) return null;
 
-    
+
     const handleUpload = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -22,8 +22,8 @@ function UploadCSV({ setSummary }) {
     };
 
     return (
-        <div className="bg-white p-6 rounded-xl shadow">
-            <label className="block mb-2 font-medium">
+        <div className="bg-white p-6 rounded-xl shadow dark:bg-gray-800">
+            <label className="block mb-2 font-medium text-gray-700 dark:text-white">
                 Upload CSV File
             </label>
             <input
