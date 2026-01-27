@@ -1,6 +1,6 @@
 import { uploadCSV } from "../services/api";
 import { useUser } from "@clerk/clerk-react";
-function UploadCSV({ setSummary }) {
+function UploadCSV({ setSummary, onUploadSuccess }) {
     const { isSignedIn } = useUser();
     if (!isSignedIn) return null;
 
@@ -12,6 +12,9 @@ function UploadCSV({ setSummary }) {
         try {
             const res = await uploadCSV(file);
             setSummary(res.data);
+            if (onUploadSuccess) {
+                onUploadSuccess();
+            }
         } catch (err) {
             if (err.response?.status === 409) {
                 alert("Dataset already uploaded");

@@ -10,8 +10,8 @@ function SummaryCards({ summary }) {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {items.map(([title, value]) => (
                 <div key={title} className="bg-white p-6 rounded-xl shadow dark:bg-gray-800">
-                    <p className="text-gray-500 dark:text-gray-400">{title}</p>
-                    <h2 className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">{value}</h2>
+                    <p className="text-gray-500 dark:text-white">{title}</p>
+                    <h2 className="text-2xl font-bold text-indigo-600 dark:text-white">{value}</h2>
                 </div>
             ))}
         </div>

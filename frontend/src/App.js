@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SignedIn, SignedOut } from "@clerk/clerk-react";
 import Home from "./pages/Home";
 import Dashboard from "./components/DashBoard";
 import DatasetView from "./pages/DatasetView";
+import Compare from "./pages/Compare";
 
 function App() {
+  // const [compareList] = useState([]);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -29,6 +33,14 @@ function App() {
           element={
             <SignedIn>
               <DatasetView />
+            </SignedIn>
+          }
+        />
+        <Route
+          path="/compare"
+          element={
+            <SignedIn>
+              <Compare />
             </SignedIn>
           }
         />
