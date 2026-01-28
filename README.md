@@ -1,227 +1,128 @@
-🧪 Chemical Equipment Parameter Visualizer
-Hybrid Web + Desktop Application
-
-A hybrid analytics platform that enables users to upload, visualize, analyze, and compare chemical equipment datasets through both a Web Dashboard and a Desktop Application, powered by a common Django REST backend.
-
-📌 Project Overview
-
-The Chemical Equipment Parameter Visualizer allows users to upload CSV/Excel datasets containing chemical equipment parameters such as:
-
-Equipment Name
-
-Equipment Type
-
-Flowrate
-
-Pressure
-
-Temperature
-
-The system processes this data using Pandas, generates summary analytics, alerts, visualizations, and allows users to:
-
-View historical uploads
-
-Visualize individual datasets in detail
-
-Compare multiple datasets
-
-Generate PDF reports
-
-Access the system securely using authentication
-
-This project demonstrates real-world hybrid architecture, where both Web and Desktop clients consume the same backend APIs.
-
-🧰 Tech Stack
-Backend
-Python
-Django
-
-Django REST Framework
-
-Pandas
-
-SQLite
-
-ReportLab (PDF generation)
-
-Frontend (Web)
-
-React.js
-
-Tailwind CSS
-
-Chart.js
-
-React Router
-
-Clerk Authentication
-
-Frontend (Desktop)
-
-PyQt5
-
-Matplotlib
-
-Requests
-
-✨ Features Implemented
-🔐 Authentication
-
-Secure user authentication using Clerk
-
-Protected dashboard and dataset views
-
-📤 Dataset Upload
-
-Upload CSV or Excel files
-
-Backend validation
-
-Duplicate dataset prevention (by name)
-
-📊 Data Analytics
-
-Total equipment count
-
-Average flowrate
-
-Average pressure
-
-Average temperature
-
-Equipment type distribution
-
-⚠️ Alerts
-
-Automatic alerts for:
-
-High average pressure
-
-High average temperature
-
-Displayed in both Web and Desktop apps
-
-🗂️ History Management
-
-Stores last 5 uploaded datasets
-
-View, delete, and manage datasets
-
-Backend-synced deletion for consistency
-
-🔍 Dataset Visualization
-
-Dedicated dataset detail page
-
-Summary cards
-
-Charts
-
-Alerts explanation
-
-🔄 Dataset Comparison
-
-Select exactly two datasets
-
-Side-by-side comparison
-
-Safe state management
-
-Error-proof selection logic
-
-📄 PDF Report Generation
-
-One-click PDF download
-
-Includes dataset summary
-
-Generated on backend
-
-💾 Frontend State Persistence
-
-Uses localStorage
-
-Dataset view survives page reloads
-
-🖥️ Desktop Application
-
-Upload datasets
-
-View existing datasets
-
-Handle duplicate uploads
-
-Visualize charts using Matplotlib
-
-Same analytics as web app
-
+# 🧪 Chemical Equipment Parameter Visualizer
+## Hybrid Web + Desktop Application
+
+A feature-rich analytics platform offering the ability to upload, visualize, analyze, and compare chemical equipment datasets via a Web Dashboard and a Desktop Application, both powered by a unified Django REST backend.
+
+---
+
+## 📌 Project Overview
+The **Chemical Equipment Parameter Visualizer** allows users to upload datasets containing critical parameters such as:
+- **Equipment Name**  
+- **Equipment Type**  
+- **Flowrate**  
+- **Pressure**  
+- **Temperature**  
+
+It facilitates:
+- **Historical Upload Management** – List and manage historical uploads.  
+- **Detailed Analytics** – Visualize dataset summaries, charts, and alerts.  
+- **Comparisons** – Compare multiple datasets side-by-side.  
+- **PDF Reporting** – Comprehensive reports with one click.
+- **Secure Access** – User authentication for data privacy.
+
+This hybrid architecture showcases both web and desktop client consumption of shared APIs.
+
+---
+
+## 🧰 Tech Stack
+### Backend:
+- Python + Django
+- Django REST Framework
+- Pandas (Processing)
+- SQLite (Database)
+- ReportLab (PDF Generator)
+
+### Frontend (Web):
+- React.js
+- Tailwind CSS
+- Chart.js (Visualizations)
+- React Router
+- Clerk Authentication
+
+### Desktop App:
+- PyQt5
+- Matplotlib
+- Requests
+
+---
+
+## ✨ Features
+- [x] **🔐 Authentication**: Powered by Clerk. Includes user signup, login, and logout mechanisms.
+- [x] **📤 Uploads**: Allow validated dataset uploads with duplicate name checks.
+- [x] **📊 Analytical Insights**:
+  - Total Equipment Count
+  - Averages for Flowrate, Pressure, and Temperature
+  - Equipment Type Distribution
+- [x] **⚠️ Threshold Alerts**:
+  - High-pressure alerts
+  - High-temperature notifications
+- [x] **🗂️ History Synchronization**: List and remove datasets dynamically from both web and desktop applications with backend syncing.
+- [x] **🔍 Dataset Insights**:
+  - Summaries, Cards
+  - High-contrast Chart Visuals
+- [x] **🔄 Dual-Dataset Comparisons**
+- [x] **📄 PDF Report**
+- [x] **Desktop Integration**: Full symmetry with the web application, Python-driven.
+
+---
+
+## 🪜 Project Structure
+```
 Chemical_visualisation/
 │
 ├── backend/
-│ ├── analytics/
-│ │ ├── models.py
-│ │ ├── views.py
-│ │ ├── utils.py
-│ │ ├── urls.py
-│ │ └── admin.py
-│ ├── backend/
-│ │ └── settings.py
-│ ├── db.sqlite3
-│ └── manage.py
+│   ├── analytics/            # Analytics logic
+│   ├── backend/              # Django settings
+│   └── db.sqlite3            # Database
 │
 ├── web-frontend/
-│ ├── src/
-│ │ ├── components/
-│ │ ├── pages/
-│ │ ├── services/
-│ │ └── App.js
-│ └── package.json
+│   ├── src/                  # React components & views
+│   ├── public/
+│   └── package.json          # Project Dependencies
 │
 ├── desktop_app/
-│ └── main.py
+│   └── main.py               # Desktop App Manager
 │
-└── README.md
+└── README.md                 # Documentation
+```
 
-⚙️ How to Run the Project
-✅ Prerequisites
+---
 
-Python 3.9+
+## ⚙️ Getting Started
+### ✅ Prerequisites
+- Python >= 3.9  
+- Node.js >= 18  
+- npm (Latest)
+- Virtual Env Setup (Optional but Recommended)
 
-Node.js 18+
-
-npm
-
-Virtual environment (recommended)
-
-🚀 Backend Setup (Django)
+### 🚀 Backend Setup (Django)
+```bash
 cd backend
 python -m venv venv
-venv\Scripts\activate # Windows
-source venv/bin/activate # Mac/Linux
-
+source venv/bin/activate # Mac/Linux or venv\Scripts\activate on Windows
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
+```
+Access at: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
-Backend runs at:
-
-http://127.0.0.1:8000/
-
-🌐 Web Frontend Setup (React)
+### 🌐 Web Frontend Setup (React)
+```bash
 cd web-frontend
 npm install
 npm start
+```
+Access at: [http://localhost:3000/](http://localhost:3000/)
 
-Web app runs at:
-
-http://localhost:3000/
-
-🖥️ Desktop App Setup (PyQt5)
+### 🖥️ Desktop Setup (PyQt5)
+```bash
 cd desktop_app
 pip install pyqt5 matplotlib requests
 python main.py
+```
 
-👤 Author
+---
 
-Tanush Aggarwal
+## 👤 Author
+Created and maintained by **Tanush Aggarwal**.
